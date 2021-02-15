@@ -1,8 +1,23 @@
 <template>
   <div id="app">
+    <b-navbar toggleable="sm" type="light" variant="light">
+      <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
+
+      <b-navbar-brand>
+        <img src="https://www.mailersend.com/images/logo.svg" alt="">
+      </b-navbar-brand>
+
+      <b-collapse id="nav-text-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item :to="{name: 'new-email'}">New</b-nav-item>
+          <b-nav-item :to="{name: 'email-activity'}">Activity</b-nav-item>
+<!--          <b-nav-item :to="{name: 'recipient-emails'}">Activity</b-nav-item>-->
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+
     </div>
     <router-view/>
   </div>
