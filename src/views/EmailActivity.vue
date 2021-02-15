@@ -18,7 +18,7 @@
                 <th scope="row">{{  email.id }}</th>
                 <td>{{  email.sender.email }}</td>
                 <td><router-link :to="'recipient-emails/' + email.recipient_id">{{ email.recipient.email }}</router-link></td>
-                <td>{{ email.subject }}</td>
+                <td><router-link :to="'/view-email/' + email.id">{{ email.subject }}</router-link></td>
               </tr>
               </tbody>
             </table>
