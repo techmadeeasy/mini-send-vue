@@ -12,17 +12,27 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item :to="{name: 'new-email'}">New</b-nav-item>
           <b-nav-item :to="{name: 'email-activity'}">Activity</b-nav-item>
-<!--          <b-nav-item :to="{name: 'recipient-emails'}">Activity</b-nav-item>-->
+          <b-nav-item :to="{name: 'recipient-list'}">Recipients</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <div id="nav">
-
+    <div class="m-5">
+      <search-input></search-input>
     </div>
+    <b-spinner label="Spinning" v-if="loading"></b-spinner>
     <router-view/>
   </div>
 </template>
 
+<script>
+  import SearchInput from "@/components/SearchInput";
+  export default {
+      name: 'App',
+      components: {
+        SearchInput
+      }
+  }
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -43,5 +53,9 @@
       color: #42b983;
     }
   }
+}
+
+.search-result {
+  top: 60px;
 }
 </style>

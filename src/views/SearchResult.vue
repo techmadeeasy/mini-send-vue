@@ -11,7 +11,6 @@
                 <th scope="col">Sender</th>
                 <th scope="col">Recipient</th>
                 <th scope="col">Subject</th>
-                <th scope="col">Status</th>
               </tr>
               </thead>
               <tbody>
@@ -20,7 +19,6 @@
                 <td>{{  email.sender.email }}</td>
                 <td><router-link :to="'recipient-emails/' + email.recipient_id">{{ email.recipient.email }}</router-link></td>
                 <td><router-link :to="'/view-email/' + email.id">{{ email.subject }}</router-link></td>
-                <td>{{ (email.is_sent)? 'Sent': 'Posted' }}</td>
               </tr>
               </tbody>
             </table>
@@ -35,11 +33,11 @@
 import axios from "axios";
 
 export default {
-  name: "EmailActivity",
+  name: "SearchResult",
   data(){
     return {
       emails: '',
-      fields: ['from', 'to', 'subject', 'time', 'status'],
+      fields: ['from', 'to', 'subject', 'time'],
     }
   },
   created() {

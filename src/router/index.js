@@ -5,6 +5,7 @@ import NewEmail from "@/views/NewEmail";
 import EmailActivity from "@/views/EmailActivity";
 import RecipientEmailList from "@/views/RecipientEmailList";
 import ViewEmail from "@/views/ViewEmail";
+import RecipientList from "@/views/RecipientList";
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     name: 'view-email',
     props: true,
     component: ViewEmail
+  },
+  {
+    path: '/recipient-list',
+    name: 'recipient-list',
+    component: RecipientList
   }
 ]
 

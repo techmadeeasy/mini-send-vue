@@ -3,7 +3,7 @@
     <b-row class="row">
       <b-col class="col-md-10">
         <b-card no-body class="overflow-hidden border-0">
-          <div class="about">
+          <div class="about" v-if="Object.keys(email).length > 1">
               <h3>{{ email.subject }}</h3>
             <small>{{ new Date(email.created_at).toDateString() }} </small>
 
@@ -39,7 +39,6 @@ export default {
     .then((res)=>{
         console.log(res)
       vm.email = res.data;
-
     })
     .catch((err)=>{
       console.log(err)

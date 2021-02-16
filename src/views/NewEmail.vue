@@ -2,6 +2,8 @@
   <div class="container">
     <b-row class="row">
       <b-col class="col-md-10">
+        <b-alert variant="success" show v-if="success">Email sent</b-alert>
+        <b-alert variant="danger" show v-if="fail">There was a problem sending your mail, try again later</b-alert>
         <b-card no-body class="overflow-hidden border-0">
           <div class="about">
             <b-form @submit.prevent="sendEmail">
@@ -77,9 +79,9 @@ import axios from "axios";
           subject: '',
           text: '',
           htmlContent: '',
-          files: [],
-          image: "",
-        }
+        },
+        success: false,
+        fail: false
       }
     },
     created() {
@@ -94,25 +96,40 @@ import axios from "axios";
     },
     methods: {
       sendEmail: function () {
+        var vm =this;
         let formData = this.formatFormData()
         axios.post('new-email', formData, {headers: {"Content-Type": "multipart/form-data"}})
         .then((res)=>{
-          console.log("yeay")
-          console.log(res)
+          if (res.data=='true'){
+            vm.success = true;
+            vm.resetForm();
+          }
         })
         .catch((err)=>{
+          vm.fail = true;
           console.log(err)
         })
       },
+
       formatFormData: function () {
         let formData = new FormData();
-        formData.append('file', this.$refs.file.files[0]);
+        if (this.$refs.file.files[0]){
+          formData.append('file', this.$refs.file.files[0]);
+        }
         formData.append('from', this.form.from)
         formData.append('to', this.form.to)
         formData.append('subject', this.form.subject)
         formData.append('text', this.form.text)
         formData.append('htmlContent', this.form.htmlContent)
         return formData;
+      },
+
+      resetForm: function () {
+          this.form.htmlContent = '';
+          this.form.text = '';
+          this.form.from = '';
+          this.form.to = '';
+          this.form.subject = '';
       }
 
     }
